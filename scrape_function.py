@@ -24,7 +24,7 @@ def get_critic_page_init(movie_name):
     movie_name = re.sub(r"[^a-zA-Z]{1,}", "_", movie_name).lower()
     if movie_name[-1] == '_':
         movie_name = movie_name[:-1]
-    print(f'Try to get response from https://www.rottentomatoes.com/m/{movie_name}/reviews')
+    # print(f'Try to get response from https://www.rottentomatoes.com/m/{movie_name}/reviews')
     response = requests.get(f'https://www.rottentomatoes.com/m/{movie_name}/reviews')
     soup = BeautifulSoup(response.content, 'html.parser')
     critics = soup.find_all('div',class_ = 'review-row')
@@ -42,7 +42,7 @@ def get_critic_page_init(movie_name):
 
 def get_critic_page_follow(movie_id,start_token = None):
     url = f'https://www.rottentomatoes.com/napi/movie/{movie_id}/reviews/all?after={start_token}%3D%3D&pageCount=20'
-    print(f'Using url:{url}')
+    # print(f'Using url:{url}')
     try:
         response = requests.get(url)
         if response.status_code != 200:
